@@ -51,10 +51,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Seu Chat:',
-            style: TextStyle(
-              color: Colors.white,
-            )),
+        title: const Text('Meu Chat'),
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(
@@ -82,22 +79,18 @@ class _ContactsPageState extends State<ContactsPage> {
                       children: [
                         Text(
                           'Seu ID',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           id,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                color: Colors.deepPurple[700],
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            color: Colors.deepPurple[700],
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),

@@ -3,8 +3,7 @@ import websockets
 
 clientes = set()
 
-async def chat(websocket, path):
-    # Log quando um cliente se conecta
+async def chat(websocket):
     cliente_id = id(websocket)
     print(f"Cliente conectado: {cliente_id}")
     clientes.add(websocket)
@@ -12,7 +11,7 @@ async def chat(websocket, path):
         async for message in websocket:
             mensagem_formatada = f"{message} from {cliente_id}"
             print(f"Mensagem recebida: {mensagem_formatada}")
-            
+
             # Envia a mensagem para todos os clientes conectados
             for cliente in clientes:
                 await cliente.send(mensagem_formatada)
@@ -23,9 +22,10 @@ async def chat(websocket, path):
         # Log quando um cliente se desconecta
         print(f"Cliente desconectado: {cliente_id}")
 
-start_server = websockets.serve(chat, "10.200.74.225", 8765)
+async def main():
+    async with websockets.serve(chat, "localhost", 8765):
+        print("Servidor WebSocket iniciado em ws://localhost:8765")
+        await asyncio.Future()
 
-print("Servidor WebSocket iniciado em ws://10.200.74.225:8765")
-
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+if __name__ == "__main__":
+    asyncio.run(main())
